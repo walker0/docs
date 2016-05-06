@@ -13,7 +13,7 @@ cd ~/src && \
     (cd decoding-carelink && \
         sudo python setup.py develop
     )
-    git clone git://github.com/openaps/dexcom_reader.git || \
+    git clone -b loudnate/g5-receiver git://github.com/loudnate/dexcom_reader.git || \
         (cd dexcom_reader && git pull)
     (cd dexcom_reader && \
         sudo python setup.py develop
