@@ -92,11 +92,8 @@ It will take about 1-2 minutes for Homebrew to install.  You’ll see a bunch of
 
 #### **1-3.  Install lsusb**
 
-```
-brew update             && \
-brew tap jlhonora/lsusb && \
-brew install lsusb
-```
+
+`brew update && brew tap jlhonora/lsusb && brew install lsusb`
 
 ![After installing lsusb](../../Images/Edison/after_install_lsusb.png)
 
@@ -181,7 +178,7 @@ for a few minutes: that's fine.  You can also expect to see an ugly red:
 ```
 That is also fine, and you can ignore it too.
 
-After several reboots (don’t panic), you should get a ubilinux login prompt.  Use login `root` and password `edison`.
+After several reboots (don’t panic, you may see dialogs such as disk not initialised, you can ignore these), you should get a ubilinux login prompt.  Use login `root` and password `edison`.
 
 ![Login after successful Reboot](../../Images/Edison/login_after_successful_reboot.png)
 
@@ -204,7 +201,9 @@ sed -i"" "s/localhost$/localhost $myedisonhostname/" /etc/hosts
 
 ![Edison hostname and password screen](../../Images/Edison/edison_hostname_password.png)
 
-* To change the password for your Edison to a more secure password than “edison”, enter `passwd root`
+*** IMPORTANT ***
+
+* To change the password for your Edison to a more secure password than “edison”, enter `passwd root` 
 
 * Follow the commands to reset the password.    Repeat for `passwd edison`
 
@@ -229,7 +228,7 @@ sed -i"" "s/localhost$/localhost $myedisonhostname/" /etc/hosts
 * add `    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf` right below the iface wlan0 line.
 * comment out (add #) to the wpa-ssid and wpa-psk lines as shown
 
-**A-4.** Type “:wq” to write (save) and quit that screen.
+**A-4.** Press “ESC” and then type “:wq” to write (save) and quit that screen.
 
 
 **B-1.** Enter `vi /etc/wpa_supplicant/wpa_supplicant.conf`
@@ -254,7 +253,7 @@ These are the wifi networks that your rig will be able to use to stay connected 
 * Note: If you don’t know your personal hotspot’s information, you can find it under your iPhone Settings>Personal Hotspot
 * You will definitely want to add it to the list of wifi networks.
 
-**B-4.** Type “:wq” to write (save) and quit that screen when you have finished adding the wifi networks.  You can always come back and add more networks as needed, using the same process.
+**B-4.** Press “ESC” then type “:wq” to write (save) and quit that screen when you have finished adding the wifi networks.  You can always come back and add more networks as needed, using the same process.
 
 **C** Run `ifup wlan0` to make sure you can connect to wifi.  A successful connection should look similar (IP address numbers will be different than mine):
 
@@ -267,7 +266,7 @@ ALRIGHTY...Your Edison is coming along.  Now we are going to logout of the Ediso
 * Type `reboot`
 * Wait as many lines of action go by in the Terminal window...eventually you will get to a prompt.  When you get that prompt.  Go ahead and close out the window.  Confirm that you want to “terminate”
 * Open a new Terminal window by pressing Command-N
-* Login to your Edison by entering `ssh root@edisonhost.local`
+* Login to your Edison by entering`ssh root@youredisonhostname.local` if you used the same hostname as above it would be : `ssh root@edisonhost.local`
 * Enter your password that you set earlier
 
 ![Login to your rig](../../Images/Edison/Rig_login_time.png)
@@ -286,7 +285,7 @@ ALRIGHTY...Your Edison is coming along.  Now we are going to logout of the Ediso
 
 `adduser edison dialout`
 
-`dpkg-reconfigure tzdata`    # Set local time-zone
+`dpkg-reconfigure tzdata`    # Set local time-zone, navigate to your country with arrow keys, then press Enter, repeat for city.
 
 ![Time zone examples](../../Images/Edison/Time_zone.png)
 
@@ -295,9 +294,11 @@ ALRIGHTY...Your Edison is coming along.  Now we are going to logout of the Ediso
  * set the log rotation to daily from weekly
  * remove the #  from the “#compress” line
 
-* Press ESC and then type (no quotes) “:wq” to save and quit
+* Press ESC and then type “:wq” to save and quit
 
 ![Log rotation examples](../../Images/Edison/log_rotation.png)
+
+**Congratulations, you have completed the flashing and basic setup of your edison. Now it is time to move onto the install of OpenAPS**
 
 ### 2. Installing the looping script (openaps-setup.sh)
 
